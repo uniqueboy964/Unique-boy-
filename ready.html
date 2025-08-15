@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tree Planting Campaign</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <style>
+    :root { --green-700: #1f7a3a; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow-x: hidden;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background-image: linear-gradient(rgba(6, 30, 12, 0.25), rgba(6, 30, 12, 0.25)), 
+        url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    .section-card {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.0);
+      border-radius: 1rem;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 2rem auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      color: white;
+    }
+    .title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 2px #1f7a3a;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+    .btn:hover { transform: scale(1.05); }
+    .btn-primary { background: var(--green-700); color: white; }
+    .btn-secondary { background: white; border: 1px solid var(--green-700); color: var(--green-700); }
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 50;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: rgba(255,255,255,0.95);
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 500px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="section-card" data-aos="zoom-in">
+    <h1 class="title">🌳 पेड़ लगाइए, भविष्य बचाइए</h1>
+    <p>हम स्थानीय समुदायों के साथ मिलकर पेड़ लगाते हैं — शहरों, विद्यालयों और सार्वजनिक जगहों पर। जुड़िए और हर साल हमारी टीम के साथ पर्यावरण को बेहतर बनाइए।</p>
+    <div style="margin-top: 1rem;">
+      <a href="#join-form" class="btn btn-primary">अभियान से जुड़ें</a>
+      <a href="#gallery" class="btn btn-secondary">गैलरी देखें</a>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="section-card" data-aos="fade-up">
+    <h2 class="title">हमारी Tree Planting Journey</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <label class="h-52 bg-white bg-opacity-30 rounded-lg border-dashed border-2 border-green-300 flex items-center justify-center cursor-pointer shadow">
+        <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, this)" />
+        <span class="text-gray-200">+ फोटो अपलोड करें</span>
+      </label>
+      <label class="h-52 bg-white bg-opacity-30 rounded-lg border-dashed border-2 border-green-300 flex items-center justify-center cursor-pointer shadow">
+        <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, this)" />
+        <span class="text-gray-200">+ फोटो अपलोड करें</span>
+      </label>
+      <label class="h-52 bg-white bg-opacity-30 rounded-lg border-dashed border-2 border-green-300 flex items-center justify-center cursor-pointer shadow">
+        <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, this)" />
+        <span class="text-gray-200">+ फोटो अपलोड करें</span>
+      </label>
+    </div>
+  </section>
+
+  <!-- Join Form Section -->
+  <section id="join-form" class="section-card" data-aos="fade-up">
+    <h3 class="title">अभियान से जुड़ें</h3>
+    <form id="signup" class="grid gap-4">
+      <input name="name" required type="text" placeholder="आपका नाम" class="p-3 border rounded-lg text-black" />
+      <input name="email" required type="email" placeholder="ईमेल" class="p-3 border rounded-lg text-black" />
+      <input name="phone" required type="tel" placeholder="मोबाइल नंबर" class="p-3 border rounded-lg text-black" />
+      <textarea name="message" rows="4" placeholder="आपका मैसेज (वैकल्पिक)" class="p-3 border rounded-lg text-black"></textarea>
+      <button type="submit" class="btn btn-primary">सबमिट करें</button>
+    </form>
+  </section>
+
+  <!-- Donate Section -->
+  <section class="section-card" data-aos="fade-up">
+    <h3 class="title">हमारे मिशन में आर्थिक सहयोग करें</h3>
+    <img id="qr" src="1000028269.png" alt="Donate QR" class="mx-auto w-48 h-48 rounded-lg shadow mb-4 object-cover" />
+    <p class="font-semibold text-white">UPI ID: <span>sumitkumar0408000-3@okaxis</span></p>
+    <a href="upi://pay?pa=sumitkumar0408000-3@okaxis&pn=Tree%20Plant%20Donation" class="btn btn-secondary mt-3">UPI से भुगतान करें</a>
+  </section>
+
+  <!-- Footer -->
+  <footer style="text-align: center; padding: 1rem; color: white;">
+    © <span id="year"></span> Tree Planting Campaign — सभी अधिकार सुरक्षित
+    <br><br>
+    <button onclick="openModal()" class="btn btn-secondary">About Us</button>
+  </footer>
+
+  <!-- Modal -->
+  <div id="aboutModal" class="modal">
+    <div class="modal-content">
+      <h2 class="text-xl font-bold mb-4">हमारे बारे में</h2>
+      <p>हमारा लक्ष्य हर शहर और गाँव में पेड़ लगाकर आने वाली पीढ़ियों के लिए एक हरा-भरा भविष्य बनाना है। हम मानते हैं कि प्रकृति की रक्षा करना हम सभी की जिम्मेदारी है, और इसी सोच के साथ हम अपना Tree Planting मिशन चला रहे हैं।</p>
+      <br>
+      <button onclick="closeModal()" class="btn btn-primary">बंद करें</button>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    (function() { emailjs.init("hGimwwUax5E8hETy2"); })();
+    AOS.init({ duration: 1000, once: true });
+
+    function previewImage(evt, input){
+      const reader = new FileReader();
+      const label = input.parentElement;
+      reader.onload = e => {
+        label.style.backgroundImage = `url(${e.target.result})`;
+        label.style.backgroundSize = 'cover';
+        label.style.backgroundPosition = 'center';
+        label.innerHTML = '';
+      };
+      if(input.files && input.files[0]) reader.readAsDataURL(input.files[0]);
+    }
+
+    document.getElementById('signup').addEventListener('submit', function(e) {
+      e.preventDefault();
+      emailjs.sendForm('service_so9qi0n', 'template_n979gxk', this)
+        .then(() => {
+          alert('धन्यवाद — आपका फॉर्म सफलतापूर्वक सबमिट हो गया है।');
+          e.target.reset();
+        }, (error) => {
+          alert('फॉर्म भेजने में त्रुटि: ' + JSON.stringify(error));
+        });
+    });
+
+    document.getElementById('year').innerText = new Date().getFullYear();
+
+    function openModal() {
+      document.getElementById('aboutModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('aboutModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
